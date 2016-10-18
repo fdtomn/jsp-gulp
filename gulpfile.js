@@ -16,9 +16,7 @@ gulp.task('clean', function () {
 
 
 gulp.task('default', ['clean'] , function () {
-
     console.log('Hello Gulp');
-
     gulp.start('minify-css', 'rev');
 
 });
@@ -32,43 +30,42 @@ gulp.task('default', ['clean'] , function () {
         .pipe( gulp.dest( 'rev/js' ) );
 });*/
 
-
 gulp.task('minify-css', function () {
     return gulp.src('src/main/webapp/static/css/*.css')
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(cleanCSS({debug: true}, function (details) {
             console.log(details.name + ":" + details.stats.originalSize);
         }))
-        //.pipe(gulp.dest('build/assets'))
+        .pipe(gulp.dest('build/assets'))
         .pipe(rev())
         .pipe(gulp.dest('src/main/webapp/assets/css'))
         .pipe(rev.manifest())
-        .pipe(gulp.dest('src/main/webapp/assets'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('src/main/webapp/assets'));
+        .pipe(gulp.dest('src/main/webapp/assets/css'))
+        // .pipe(sourcemaps.write())
+        // .pipe(gulp.dest('src/main/webapp/assets'));
 });
 
 gulp.task('rev', function () {
     //var opts = {comments:false,spare:false,quotes:true};
-    return gulp.src(['src/main/webapp/assets/*.json', 'src/main/webapp/*.jsp'])
+    console.log('.................replace..................');
+    return gulp.src(['src/main/webapp/assets/css/*.json', 'src/main/webapp/*.jsp'])
         .pipe( revCollector({
             replaceReved: true,
-            /*dirReplacements: {
-                'css': 'src/main/webapp/static/css/bootstrap.css',
-                '/js/': '/dist/js/',
-                'cdn/': function(manifest_value) {
-                    return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
-                }
-            }*/
+            dirReplacements: {
+                'css': 'src/main/webapp/static/css',
+                //'/js/': '/dist/js/',
+                // 'cdn/': function(manifest_value) {
+                //     return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
+                // }
+            }
         }) )
-        .pipe( minifyHTML({
-            empty:true,
-            spare:true
-        }) )
+        // .pipe( minifyHTML({
+        //     empty:true,
+        //     spare:true
+        // }) )
         //.pipe( gulp.dest('dist') )
-        .pipe( gulp.dest('src/main/webapp') )
+        // .pipe( gulp.dest('src/main/webapp'))
         //.pipe(minifyHTML(opts))
-
 });
 
 
