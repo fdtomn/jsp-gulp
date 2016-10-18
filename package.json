@@ -1,0 +1,28 @@
+{
+  "name": "jsp-gulp",
+  "version": "1.0.0",
+  "description": "jsp gulp project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "jsp",
+    "java",
+    "freemarker"
+  ],
+  "author": "ncc0706",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-rev": "^7.1.2"
+  },
+  "dependencies": {
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-sourcemaps": "^2.1.1"
+  }
+}
